@@ -1,7 +1,0 @@
-//dbinfo
-db: cinedaniproductions
-
-user : joy 4rfvVFR$ all
-user : viewuser 4rfvVFR$ select update insert delete
-
-
