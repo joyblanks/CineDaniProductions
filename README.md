@@ -5,4 +5,4 @@
 Designed by Joy Biswas | joy.blanks@hotmail.com
 
 ####Snapshot
-<img src="resources/snapshot.png" />
+<img src="resources/images/snapshot.png" />
