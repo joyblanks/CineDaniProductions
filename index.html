@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cine Dani Productions</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="description" content="CineDani Productions">
+		<meta name="keywords" content="Films, Movies, CineDani, CineDani Productions, Vikas Dani, Joy Biswas">
+		<meta name="author" content="Joy Biswas">
+		<link href="//fonts.googleapis.com/css?family=Indie+Flower|Satisfy|Berkshire+Swash|Sacramento|Shojumaru" rel=stylesheet type="text/css">
+		<link rel="shortcut icon" href="resources/images/icon.jpg" />
+		<link rel=stylesheet href="resources/styles/main.css" />
+		<link rel=stylesheet href="resources/styles/menu.css" />
+		<link rel=stylesheet href="resources/styles/fnky.css" />
+		<link rel=stylesheet href="resources/styles/gallerybox.css" />
+	</head>
+	<body>
+		<header>
+			<img class=preloader src="resources/images/rotator.png"  width=70 height=70 />
+			<img id="loader" src="resources/images/rotator.png"  width=70 height=70 />
+			<div id="loading"></div>
+			<div id="preloader" style="width:1px;height:1px;position:absolute;opacity:0.1;top:-33px;">
+				<img src="resources/images/bkg2.jpg" width=1 height=1>
+				<img src="resources/images/ctd.gif" width=1 height=1 id="idontknowman">
+				<img src="resources/images/reel2.jpg" width=1 height=1>
+				<img src="resources/images/bkg.png" width=1 height=1>
+				<img src="resources/images/tv.png" width=1 height=1>
+				<img src="resources/images/reel.gif" width=1 height=1>
+				<img src="resources/images/cineDani.png" width=1 height=1>
+				<img src="resources/images/roller.jpg" width=1 height=1>
+				<img src="resources/images/close.png" width=1 height=1>
+				<img src="resources/images/backbutton.png" width=1 height=1>
+				<img src="resources/images/character.png" width=1 height=1>
+				<img src="resources/images/frameborder.png" width=1 height=1>
+			</div>
+			<img src="resources/images/cineDani.png" id="cineDani" />
+		</header>
+		<section>
+			<div id="menumobile" onclick="mobileMenu('x');"></div>
+			<div id="roller2" class=roller2 style="display:none">
+				<div id="nav">
+					<img id="hello" src="resources/images/rotator.png" class="fcking fcking2"/>
+					<ul class="ca-menu">
+						<li class=fckingRoller title="Cine Dani Productions">
+							<img id="rollerli" src="resources/images/rotator.png" class="fcking fcking2"/>
+							<div id="mobileback" onclick="mobileMenu(0);"></div>
+						</li>
+						<li  onclick="doMyBoom(1,this)"  id="homeLI">
+							<a href="javascript:void(0)">
+								<span class="ca-icon">Z</span><div class="ca-content"><h2 class="ca-main">Home</h2></div>
+							</a>
+						</li>
+						<li onclick="doMyBoom(2,this)">
+							<a href="javascript:void(0)">
+								<span class="ca-icon">U</span><div class="ca-content"><h2 class="ca-main">Who we are?</h2></div>
+							</a>
+						</li>
+						<li onclick="doMyBoom(3,this)">
+							<a href="javascript:void(0)">
+								<span class="ca-icon">M</span><div class="ca-content"><h2 class="ca-main">Films</h2></div>
+							</a>
+						</li>
+						<li onclick="doMyBoom(4,this)">
+							<a href="javascript:void(0)">
+								<span class="ca-icon">R</span><div class="ca-content"><h2 class="ca-main">Awards & Recognition</h2></div>
+							</a>
+						</li>
+						<li onclick="doMyBoom(5,this)">
+							<a href="javascript:void(0)">
+								<span class="ca-icon">X</span><div class="ca-content"><h2 class="ca-main">Gallery</h2></div>
+							</a>
+						</li>
+						<li onclick="doMyBoom(6,this)">
+							<a href="javascript:void(0)">
+								<span class="ca-icon">P</span><div class="ca-content"><h2 class="ca-main">Corporate Videos</h2></div>
+							</a>
+						</li>
+						<li onclick="doMyBoom(7,this)">
+							<a href="javascript:void(0)">
+								<span class="ca-icon">K</span><div class="ca-content"><h2 class="ca-main">Contact Us</h2></div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="tv"></div><div id="content"></div>
+		</section>
+
+		<footer>
+			<div>
+				<span class=credit>Copyright &copy; 2015, Cine Dani Productions</span>
+				<p class=clear></p>
+				<span class=social>
+					<a href="https://www.facebook.com/vikas.dani.1" target="_blank" style="background-image:url(resources/images/social/facebook.png);" title="Facebook"></a>
+					<a href="https://plus.google.com/104653381745962292616" target="_blank" style="background-image:url(resources/images/social/googleplus.png);" title="Google Plus"></a>
+					<a href="https://twitter.com/cinedani" target="_blank" style="background-image:url(resources/images/social/twitter.png);" title="Twitter"></a>
+					<a href="https://www.youtube.com/channel/UCCueCFlHmv5PkLt2ACyQXUA" target="_blank" style="background-image:url(resources/images/social/youtube.png);" title="You Tube"></a>
+				</span>
+				<span class=awesomeguy>Designed by Joy <b style="font-family:'Sacramento';">B</b>iswas <a href="mailto:joy.blanks@hotmail.com"><img width=10 height=9 src="resources/images/email.png" /></a></span>
+			</div>
+		</footer>
+		<script src="resources/scripts/jquery-1.11.1.min.js"></script>
+		<script src="resources/scripts/jquery-ui-1.10.4.custom.min.js"></script>
+		<script src="resources/scripts/modernizr.custom.74611.js"></script>
+		<script src="resources/scripts/jquery.waitupimg.js"></script>
+		<script src="resources/scripts/funky.js"></script>
+		<script src="resources/scripts/fncy.js"></script>
+		<script src="resources/scripts/home.js"></script>
+		<script src="resources/scripts/jquery.slicebox.js"></script>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-65882234-1', 'auto');
+			ga('send', 'pageview');
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,116 @@
+
+{
+	"poster":"backdrop.jpg"
+	
+	,"backdropProp":"#FFF no-repeat fixed center center / cover"
+	
+	,"icon":"icon.jpg"
+	
+	,"project":"Pankh"
+
+	,"ost":{"song":"ost.mp3","volume":0.2}
+	
+	,"synopsis":"Ratna is a 13 year old motherless child and an aspiring young singer. Living in a quite dull and unsupportive environment of her home, she always dreams of going to city to pursue her dream life.\nHer dream gets a new flight when she meets with a Filmmaker &amp; Musician, OM who is travelling in the mountains to explore the natural beauty and enhance his creativity.\nThe film portrays the bond which develops between the village girl and the filmmaker through the medium of music and the pervading pain of Ratna when Om leaves the village failing to acknowledge her true desire."
+
+	,"prodCompany":[
+		 {"namef":"Humara Movies","l":""}
+		,{"namef":"Cine Dani Productions","l":""}
+	]
+
+	,"castp":[
+		 {"namef":"Suhel Banerjee","role":"Om","fb":"10152219498601026"}
+		,{"namef":"Pradnya Bhaskar Yelmame","role":"Ratna"}
+		,{"namef":"Deepak Pandit","role":"Chotu"}
+		,{"namef":"Devram Sakaram Jade","role":"Dhaba Owner"}
+		,{"namef":"Nathu Madu Jade","role":"Jade Sahab"}
+		,{"namef":"Pandurang Jade","role":"Jade Sahab's friend"}
+		,{"namef":"Machundra Pandit","role":"Masterjee"}
+		,{"namef":"Sindhu Bai Nathu Jade","role":"extras"}
+		,{"namef":"Bhagwanta Jade","role":"extras"}
+		,{"namef":"Amruta Jade","role":"extras"}
+		,{"namef":"Tagru Pandre","role":"extras"}
+		,{"namef":"Savita Taple","role":"extras"}
+	]
+	,"crewp":[
+		 {"namef":"Vikas Dani","role":"Writer, Director &amp; Music","fb":"10204877004192189"}
+		,{"namef":"Vikas Dani","role":"Screenplay","fb":"10204877004192189"}
+		,{"namef":"Snehashish Mistry","role":"Screenplay","fb":"10200695611349958"}
+		,{"namef":"Gagan Judge","role":"Cinematography","fb":"10154013669744535"}
+		,{"namef":"Suhel Banerjee","role":"Editing","fb":"10152219498601026"}
+		,{"namef":"Rameez K Zubair","role":"Sound Design &amp; Mixing"}
+		,{"namef":"Sourav.D","role":"Colorist","fb":"856072014445696"}
+		,{"namef":"Muktak Kanjilal","role":"On Location Sound Recording","fb":"10153248367522329"}
+		,{"namef":"Muktak Kanjilal","role":"Studio Dubbing","fb":"10153248367522329"}
+		,{"namef":"Abhilash Aravindakshan","role":"Studio Dubbing"}
+		,{"namef":"Sreejith Vijayan","role":"Studio Dubbing"}
+		,{"namef":"Rameez K Zubair","role":"Dialogue Editor"}
+		,{"namef":"Muktak Kanjilal","role":"Dialogue Editor"}
+		,{"namef":"Rahul Seth : Dhaba Owner","role":"Dubbing Artist"}
+		,{"namef":"Bhaiji : Jade Sahab's Freind","role":"Dubbing Artist"}
+		,{"namef":"Yogesh Dongarkar","role":"2<sup>nd</sup> Editor"}
+		,{"namef":"Snehashish Mistry","role":"Assistant to the Director","fb":"10200695611349958"}
+		,{"namef":"Gurleen Judge","role":"Assistant to the Director"}
+		,{"namef":"Paras Arora","role":"Assistant Cameraman"}
+		,{"namef":"Sunny Sharma","role":"Asssistant Musician","fb":"336128936540202"}
+		,{"namef":"Abhilash Aravindakshan","role":"Assistant Sound Engineer"}
+		,{"namef":"Sreejith Vijayan","role":"Assistant Sound Engineer"}
+		,{"namef":"Hari Bhagwant Jade","role":"Production Assistant"}
+		
+	]
+
+	
+	,"music":[
+		 {"namef":"Song : Ratia Bole"
+		 , "linksong" : "resources/stuff/projects/2/ost.mp3"
+		 , "downnamef" : "Ratia_Bole.mp3"
+		 , "who":[
+			 {"namef":"Vikas Dani","role":"Lyrics &amp; Composition","fb":"10204877004192189"}
+			,{"namef":"Suhel Banerjee","role":"Lyrics &amp; Composition","fb":"10152219498601026"}
+			,{"namef":"Somrita Saha","role":"Female Vocalist","fb":"1008474695838999"}
+			,{"namef":"Shrikant Kelkar","role":"Male Vocalist","fb":"10152924129624369"}
+			,{"namef":"Shrikant Kelkar","role":"Arranged By","fb":"10152924129624369"}
+			,{"namef":"Prortijyoti Ghosh","role":"Arranged By","fb":"10152718613446605"}
+		]}
+	]
+
+	,"special":[
+		 {"namef":"Special Tribute To", "who":[
+			 {"namef":"Satyajit Ray","role":""}
+			,{"namef":"Fedrigo Fellini","role":""}
+			,{"namef":"Mazid Mazidi","role":""}
+			,{"namef":"Abbas Kirostami","role":""}
+			,{"namef":"Andrie Tarkosky","role":""}
+		]}
+		,{"namef":"Special Thanks to", "who":[
+			 {"namef":"Vaibhav Dani","role":""}
+			,{"namef":"Tarun Gupta","role":""}
+			,{"namef":"Divya Kohli","role":""}
+			,{"namef":"Rukmini Sen","role":""}
+			,{"namef":"Deepshika Nainani","role":""}
+			,{"namef":"Sanika Bharat Lahamage","role":""}
+			,{"namef":"Rusheel Chalse","role":""}
+			,{"namef":"Savni Mudgal","role":""}
+			,{"namef":"Shijil P. Nair","role":""}
+		]}
+		,{"namef":"Very special Thanks to", "who":[
+			 {"namef":"Sarala Dani","role":""}
+		]}
+	]
+
+	,"prodp":[
+		 {"namef":"Vinay Mishra","role":"Producer"}
+		,{"namef":"Pallavi Rohatgi","role":"Producer"}
+		,{"namef":"Preeti Ali","role":"Producer"}
+		,{"namef":"Raghvan Bhardwaj","role":"Producer"}
+		,{"namef":"Surya Prakash Dani","role":"Co-Producer"}
+		,{"namef":"Vikas Dani","role":"Co-Producer","fb":"10204877004192189"}
+		,{"namef":"Abhishek Gautam","role":"Associate Producer"}
+		,{"namef":"Naya Pata Collective","role":"Creative Partners"}
+	]
+
+	,"video":[
+		 {"namef":"Pankh First Look","l":"//www.youtube.com/embed/bIuXyx9YCMA"}
+	]
+	
+
+}

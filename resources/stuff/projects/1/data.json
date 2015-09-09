@@ -1,0 +1,69 @@
+{
+	"poster":"backdrop.jpg"
+	
+	,"backdropProp":"#FFF no-repeat fixed center center / cover"
+	
+	,"icon":"icon.png"
+	
+	,"project":"Sand Temple"
+	
+	,"synopsis":"A young boy of an Indian Slum desires to decorate his house the most beautiful one on the eve of Diwali festival. Inspired by his surrounding characters and overcoming all the obstacles including his poor economic condition, he must explore the true meaning of Joy of giving in his beautiful and innocent journey..."
+
+	,"prodCompany":[
+		 {"namef":"Cine Dani Productions","l":""}
+	]
+
+	,"ost":{"song":"ost.mp3","volume":0.05}
+	
+	,"awards":[
+		 {"namef":"","l":"1.jpg"}
+		,{"namef":"","l":"2.jpg"}
+		,{"namef":"","l":"3.jpg"}
+	]
+
+	,"music":[
+		 {"namef":"Song : Bhole Shankara"
+		 , "linksong" : "resources/stuff/projects/1/ost.mp3"
+		 , "downnamef" : "Bhole_Shankara.mp3"
+		 , "who":[
+			 {"namef":"Vikas Dani","role":"Lyrics &amp; Composition","fb":"10204877004192189"}
+			,{"namef":"Prakhar Gaharwar","role":"Male Vocalist"}
+			,{"namef":"Vikas Dani","role":"Arranged By","fb":"10204877004192189"}
+			,{"namef":"Sunny Sharma","role":"Arranged By","fb":"336128936540202"}
+			,{"namef":"Muktak Kanjilal","role":"Arranged By","fb":"10153248367522329"}
+		]}
+	]
+
+	,"video":[
+		 {"namef":"Bhole Shankara - Sand Temple OST","l":"//www.youtube.com/embed/M02Q1mJZGT0"}
+		,{"namef":"Sand Temple - First Look","l":"//www.youtube.com/embed/UXTzthV_mgo"}
+		,{"namef":"Sand Temple - The Film","l":"//www.youtube.com/embed/vh-5P5JHyCo"}
+	]
+	,"castp":[
+		 {"namef":"Adil Shaikh","role":"Ampa"}
+		,{"namef":"Raj Nili","role":"Blind Old Man","fb":"183723728432105"}
+		,{"namef":"Jenvanjyoti Doke","role":"Maa"}
+		,{"namef":"Sagar Kokitkar","role":"Municipality Guy"}
+		,{"namef":"Vikas Dani","role":"Guitarist","fb":"10204877004192189"}
+		,{"namef":"Duffy"}
+	]
+	,"crewp":[
+		 {"namef":"Vikas Dani","role":"Writer, Director &amp; Music","fb":"10204877004192189"}
+		,{"namef":"Surya Praksh Dani","role":"Producer"}
+		,{"namef":"Vikas Dani","role":"Producer","fb":"10204877004192189"}
+		,{"namef":"Ashwyn Warrier","role":"Director Of Photography"}
+		,{"namef":"Poonam Jadhwani","role":"Editor"}
+		,{"namef":"Sunny Sharma","role":"Background Score","fb":"336128936540202"}
+		,{"namef":"Muktak Kanjilal","role":"Sound Design","fb":"10153248367522329"}
+		,{"namef":"Shrivats Kulkarni","role":"Sound Mixing"}
+		,{"namef":"Nigel Fernandes","role":"Final look"}
+	]
+
+	,"prodp":[
+		 {"namef":"Muktak Kanjilal","role":"Production team","fb":"10153248367522329"}
+		,{"namef":"Shahrukh Shaikh","role":"Production team"}
+		,{"namef":"Karan","role":"Production team"}
+	]
+	,"imdb" :"//www.imdb.com/title/tt3197664/"
+
+}
