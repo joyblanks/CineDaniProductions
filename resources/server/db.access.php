@@ -17,7 +17,7 @@ class dbAccess {
 	  
 	  function dbAccess(){
 			
-			return $this->dbAccessConnect("localhost", "viewuser", "********", "**************", true) ;
+			return $this->dbAccessConnect("localhost", "viewuser", "4rfvVFR$", "cinedaniproductions", true) ;
 			
 	  }
       function dbAccessConnect($sqlserver, $sqluser, $sqlpassword, $database, $persistency = true) {

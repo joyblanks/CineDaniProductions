@@ -38,7 +38,7 @@ echo $twitter->setGetfield($getfield)
 */
 
 $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-$getfield = '?screen_name=cinedani&count=3';
+$getfield = '?screen_name=cinedani&count=15';
 $requestMethod = 'GET';
 $twitter = new TwitterAPIExchange($settings);
 $tweets =  $twitter->setGetfield($getfield)

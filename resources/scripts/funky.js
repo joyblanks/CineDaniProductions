@@ -17,7 +17,7 @@ function loading(m){
 		$('#loading,#loader').fadeIn();
 		//setTimeout(function(){loading()},m);
 	}else{
-			$('#rollerli').prop({'src':'resources/images/rotator.png','class':'logo'});//put logo.png here. TODO
+			$('#rollerli').prop({'src':'resources/images/logo.png','class':'logo'});//put logo.png here. TODO
 			$('#loading,#loader').fadeOut();
 	}
 }
