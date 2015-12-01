@@ -38,10 +38,11 @@ echo $twitter->setGetfield($getfield)
 */
 
 $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-$getfield = '?screen_name=cinedani&count=15';
+$getfield = '?screen_name=cinedani&exclude_replies=true&count=1000';
 $requestMethod = 'GET';
 $twitter = new TwitterAPIExchange($settings);
 $tweets =  $twitter->setGetfield($getfield)
              ->buildOauth($url, $requestMethod)
              ->performRequest();
+
 echo json_encode(array("tweets"=>json_decode($tweets)));
