@@ -1,7 +1,7 @@
 {
 	"poster":"backdrop.jpg"
 	
-	,"backdropProp":"#FFF no-repeat fixed center center / cover"
+	,"backdropProp":"#FFF no-repeat scroll center center / cover"
 	
 	,"icon":"icon.png"
 	
@@ -16,9 +16,9 @@
 	,"ost":{"song":"ost.mp3","volume":0.05}
 	
 	,"awards":[
-		 {"namef":"","l":"1.jpg"}
-		,{"namef":"","l":"2.jpg"}
-		,{"namef":"","l":"3.jpg"}
+		 {"namef":"","l":"1.jpg","t":"National Academy of Cinema and Television: NACT"}
+		,{"namef":"","l":"2.jpg","t":"Jaipur International Film Festival: JIFF"}
+		,{"namef":"","l":"3.jpg","t":"Chennai International Short Film Festival: CISFF"}
 	]
 
 	,"music":[

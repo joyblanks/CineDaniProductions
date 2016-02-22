@@ -1,23 +1,51 @@
 <?php
-	
-	$remoteImage = getImg($_GET['id'])=='' ? "../images/anno.png" : getImg($_GET['id']);
+	$remoteImage = handleRead($_GET['id']);
 	$imginfo = getimagesize($remoteImage);
 	header("Content-type: ".$imginfo['mime']);
-	readfile($remoteImage);
-	
-	function getImg($id){
+	echo file_get_contents($remoteImage);
+
+	//readfile($remoteImage);
+
+	function handleRead($id){
+		$remoteImage = getImg($id)=='' ? "../images/anno.png" : getImg($id);
+		//$img_file = file_get_contents(html_entity_decode($remoteImage));
+		return html_entity_decode($remoteImage);
+	}
+
+	//header("Content-type: text/plain");
+	/*function getImg($id){
 		$dom = new DOMDocument;
 		$dom->loadHTML(getData($id));
 		$tags = $dom->getElementsByTagName('img');
 		$img = '';
+		print_r(getData($id));
 		foreach ($tags as $tag) {
 			$img =  $tag->getAttribute('src');
-			//echo($img."<hr/>");
+			echo($img."<hr/>");
 		} 
 		return $img;
 	}
+	//v 2015
+	*/
 
+	function getImg($id){
+		$questArr = getData($id);
+		preg_match_all('/src="([^"]+)"/', $questArr, $images);
+		$img = '';
+		foreach ($images[0] as $tag) {
+			if (strpos($tag, 'p480x480') !==false) {
+				$img =  substr ( $tag , 5 , -1 );
+				//echo $img;
+				break;
+			}
+		}
 
+		return $img;
+	}
+	//v 2016
+
+	//content=$(wget http://localhost:8888/CineDani/resources/server/getimages.php?id=10153248367522329 -q -O -)
+	//echo $content
 
 	function getData($id){
 		$ch = curl_init();

@@ -2,7 +2,7 @@
 {
 	"poster":"backdrop.jpg"
 	
-	,"backdropProp":"#FFF no-repeat fixed center center / cover"
+	,"backdropProp":"#FFF no-repeat scroll center center / cover"
 	
 	,"icon":"icon.jpg"
 	
@@ -15,6 +15,12 @@
 	,"prodCompany":[
 		 {"namef":"Humara Movies","l":""}
 		,{"namef":"Cine Dani Productions","l":""}
+	]
+	,"awards":[
+		 {"namef":"","l":"5.jpg","t":"International Documentary and Short Film Festival of Kerala: IDSFFK"}
+		,{"namef":"","l":"6.jpg","t":"Kolkata Shorts Int. Film Festival: KSIFF"}
+		,{"namef":"","l":"7.jpg","t":"Bangalore International Short Film Festival: BISFF"}
+		,{"namef":"","l":"8.jpg","t":"Montreal World Film Festival: MWFF"}
 	]
 
 	,"castp":[
