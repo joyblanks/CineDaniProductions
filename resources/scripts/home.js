@@ -72,12 +72,18 @@ function toggleFeed(){
 }
 
 function socialFeed(){
-	
 	$.getJSON('./resources/server/getTweets.php', function(data){
 		var fStr = [];
 		$.each(data.tweets,function(k,tweet){
 			fStr.push('<div class=castcard>')
-			fStr.push('<img src="'+tweet.user.profile_image_url+'" /><p class=twitter>@'+tweet.user.screen_name+' &nbsp; '+$.datepicker.formatDate('d MM',new Date(tweet.created_at))+'</p><hr/>');
+			fStr.push('<img src="'
+						+tweet.user.profile_image_url
+						+'" /><p class=twitter>@'
+						+tweet.user.screen_name
+						+' &nbsp; '
+						+$.datepicker.formatDate('d MM',new Date(tweet.created_at))
+						+'</p><hr/>'
+					);
 			fStr.push(tweet.text)
 			if(tweet.extended_entities && tweet.extended_entities.media.length){
 				fStr.push('<br/><img src="'+tweet.extended_entities.media[0].media_url+'" style="float:none;width:100px; height:100px;" />')
@@ -91,5 +97,4 @@ function socialFeed(){
 			$('#socialFeed').append('<div class=castcard>Total Site Visits: '+data.count+'</div>');
 		});
 	});
-	
 }

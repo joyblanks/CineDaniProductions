@@ -328,12 +328,20 @@ header.rsp div.divider{
 }
 
 /*FONTS*/
-.fnt1{font-family: 'Indie Flower', cursive;font-size:22px;}
-.fnt2{font-family: 'Satisfy', cursive;font-size:22px;}
-.fnt3{font-family: 'Berkshire+Swash', cursive;font-size:18px;}
-.fnt4{font-family: 'Shojumaru';font-size:18px;}
-.fnt5{font-family: 'Sacramento', cursive;font-size:22px;}
 
+@font-face {
+  font-family: 'Shojumaru';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Shojumaru'), local('Shojumaru-Regular'), url(../fonts/pYVcIM206l3F7GUKEvtB3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Berkshire Swash';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Berkshire Swash'), local('BerkshireSwash-Regular'), url(../fonts/4RZJjVRPjYnC2939hKCAin6EbtqG7Ha48C3_z7erIWs.woff) format('woff');
+}
+.fnt4{font-family: 'Shojumaru';font-size:18px;}
 
 div.fckShit{
 	width:100%;

@@ -3,22 +3,33 @@ function scaryProject(data,id){
 	var backbutton = "<span  class=backbutton onclick=\"backtoFilms()\">&nbsp;</span>";
 	//debugger;
 	$('#content')
-		.css({'background':('url(resources/stuff/projects/'+id+'/'+data.poster+') '+(data.backdropProp?data.backdropProp:'no-repeat fixed center center / cover')) })
+		.css({'background':
+				('url(resources/stuff/projects/'+id+'/'+data.poster+') '
+				+(data.backdropProp?data.backdropProp:'no-repeat fixed center center / cover')) 
+			})
 		.find('>div').addClass('lvl2');
 
-	if(isSafari){
+	if(constants.isSafari){
 		$('#content .projectL:eq(0)').remove();
+		$('#content .projectL:eq(1)').css({width:'auto','padding-left':'0.5%'});
 	}else {
 		$('#content').animate({scrollLeft:($('#content>div').width()/2+10)}).scrollTop(0);
 	}
 
-	var myOst = data.ost ? '<div id=ostPlayer onclick="helpOST()"><audio autoplay loop preload="auto"><source src="resources/stuff/projects/'+id+'/'+data.ost.song+'" type="audio/mpeg"></audio><img style="width: 50px;" src="resources/images/equalizer.on.gif">&nbsp;&nbsp;<img style="width: 15px;" src="resources/images/pause.png" title="Pause Music"></div>' : '';
+	var myOst = data.ost ? '<div id=ostPlayer onclick="helpOST()">'
+								+'<audio autoplay loop preload="auto"><source src="resources/stuff/projects/'+id+'/'+data.ost.song+'" type="audio/mpeg"></audio>'
+								+'<img style="width: 50px;" src="resources/images/equalizer.on.gif">&nbsp;'
+								+'&nbsp;<img style="width: 15px;" src="resources/images/pause.png" title="Pause Music"></div>' : '';
 
-	var otherlk = (data.imdb ? '<a href="'+data.imdb+'" target=_blank><span style="background:url(resources/images/imdb.png) no-repeat center / contain;padding-left:50px;margin-left:5px;"></span></a>' : '');
+	var otherlk = (data.imdb ? '<a href="'+data.imdb+'" target=_blank>'
+									+'<span style="background:url(resources/images/imdb.png)'
+									+' no-repeat center / contain;padding-left:50px;margin-left:5px;"></span></a>' : '');
 	var toWrite = backbutton
 					+ '<div class="transBkg smalltitle">'
-					+ '<div class=smallproject style="color:#FFF;">'+myOst+'<img src="resources/stuff/projects/'+id+'/'+data.icon+'" style="box-shadow:0px 0px 3px #FFF;"/><p>'
-					+data.project+otherlk+'</p><span class=desc>' + data.synopsis + '</span><a href="javascript:void(0);" onclick="loadMoreDetails(this);">Show&nbsp;More...</a></div></div>';
+					+ '<div class=smallproject style="color:#FFF;">'
+					+myOst+'<img src="resources/stuff/projects/'+id+'/'+data.icon+'" style="box-shadow:0px 0px 3px #FFF;"/><p>'
+					+data.project+otherlk+'</p><span class=desc>' + data.synopsis + '</span>'
+					+'<a href="javascript:void(0);" onclick="loadMoreDetails(this);">Show&nbsp;More...</a></div></div>';
 	var tempVar, img, httpProt = window.location.protocol == 'https:' ? 'https:' : 'http:';
 	
 	
@@ -37,17 +48,21 @@ function scaryProject(data,id){
 	for(var i in data.awards){
 		tempVar += '<img src="resources/stuff/projects/'+id+'/awards/'+data.awards[i]['l']+'" '+(data.awards[i]['t']?'title="'+data.awards[i]['t']+'"':'')+'/>';
 	}
-	toWrite += tempVar ? '<br class=clear /><br/><br/><div class=projectawards><b class="lvl2head">Awards & Recognition</b><hr class=clear />'+tempVar+'</div>' : '' ;
+	toWrite += tempVar ? '<br class=clear /><br/><br/>'
+					+'<div class=projectawards><b class="lvl2head">Awards & Recognition</b><hr class=clear />'+tempVar+'</div>' : '' ;
 
 	
 	//cast&crew
-	toWrite += '<div class="toggleDiv"><div onclick="toggleDiv(this)" class="lvl3head">&nbsp;<b class="lvl2head">Cast & Crew </b>&nbsp;<div class="lvl2head">+</div></div>';
+	toWrite += '<div class="toggleDiv">'
+					+'<div onclick="toggleDiv(this)" class="lvl3head">&nbsp;'
+					+'<b class="lvl2head">Cast & Crew </b>&nbsp;<div class="lvl2head">+</div></div>';
 	
 	//cast
 	tempVar = '';
 	for(var i in data.castp){
 		img = data.castp[i].fb ? './resources/server/getimages.php?id='+data.castp[i].fb : 'resources/images/anno.png';
-		tempVar += '<div class=castcard><img src="'+img+'" />'+data.castp[i].namef+(data.castp[i].role ? '<br/> &nbsp;&nbsp; as : '+ data.castp[i].role:'')+'</div>';
+		tempVar += '<div class=castcard><img src="'+img+'" />'
+						+data.castp[i].namef+(data.castp[i].role ? '<br/> &nbsp;&nbsp; as : '+ data.castp[i].role:'')+'</div>';
 	}
 	toWrite += tempVar ? '<div><br class=clear /><br/><b class="fnt4 lvl2head">Cast</b><hr class=clear />'+tempVar +'</div>' : '';
 
@@ -71,12 +86,16 @@ function scaryProject(data,id){
 	toWrite += '</div>';//end cast&crew
 
 	//audio/video
-	toWrite += '<div class="toggleDiv"><div onclick="toggleDiv(this)" class="lvl3head">&nbsp;<b class="lvl2head">Audio/Video</b>&nbsp;<div class="lvl2head">+</div></div>';
+	toWrite += '<div class="toggleDiv">'
+					+'<div onclick="toggleDiv(this)" class="lvl3head">&nbsp;'
+					+'<b class="lvl2head">Audio/Video</b>&nbsp;<div class="lvl2head">+</div></div>';
 
 	//videos
 	tempVar = '';
 	for(var i in data.video){
-		tempVar += '<div class=video-container><iframe width=100 height=100 src="'+httpProt+data.video[i].l+'" frameborder="0" allowfullscreen ></iframe><br/><div class=ttle>'+data.video[i].namef + '</div></div>';
+		tempVar += '<div class=video-container>'
+						+'<iframe width=100 height=100 src="'+httpProt+data.video[i].l+'" frameborder="0" allowfullscreen ></iframe>'
+						+'<br/><div class=ttle>'+data.video[i].namef + '</div></div>';
 	}
 	toWrite += tempVar ? '<div><br class=clear /><br/><br/><b class="fnt4 lvl2head">Video Links</b><hr class=clear />'+tempVar +'</div>': '' ;
 
@@ -84,10 +103,17 @@ function scaryProject(data,id){
 	//music
 	tempVar = '';
 	for(var i in data.music){
-		tempVar += '<div class="castcard bigcard" data-linksong="'+data.music[i].linksong+'"><img src="resources/images/music.png" /><b>'+data.music[i].namef+'</b>'+'&nbsp;<div class="song songcontrol songplay" title="Play this music in background!" onclick="song(this,\'songcontrol\')">&nbsp;</div>'+'&nbsp;<div title="Music Details" class="song songplus" onclick="song(this,\'songdetail\')">&nbsp;</div>'+'&nbsp;<a href="'+data.music[i].linksong+'" download="'+data.music[i].downnamef+'"><div title="Download Media" class="song songdown">&nbsp;</div><a>'+'<hr style="display:none;"/>';//+ data.prodp[i].namef+'</div>';
+		tempVar += '<div class="castcard bigcard" data-linksong="'+data.music[i].linksong+'">'
+						+'<img src="resources/images/music.png" /><b>'+data.music[i].namef+'</b>'
+						+'&nbsp;<div class="song songcontrol songplay" title="Play this music in background!" onclick="song(this,\'songcontrol\')">&nbsp;</div>'
+						+'&nbsp;<div title="Music Details" class="song songplus" onclick="song(this,\'songdetail\')">&nbsp;</div>'
+						+'&nbsp;<a href="'+data.music[i].linksong+'" download="'+data.music[i].downnamef+'">'
+						+'<div title="Download Media" class="song songdown">&nbsp;</div><a>'
+						+'<hr style="display:none;"/>';//+ data.prodp[i].namef+'</div>';
 		for(var j in data.music[i].who){
 			img = data.music[i].who[j].fb ? './resources/server/getimages.php?id='+data.music[i].who[j].fb: 'resources/images/anno.png';
-			tempVar += '<div class=castcard style="display:none;"><img src="'+img+'" />'+ data.music[i].who[j].role +'<hr/>' + data.music[i].who[j].namef + '</div>';
+			tempVar += '<div class=castcard style="display:none;"><img src="'+img+'" />'
+						+ data.music[i].who[j].role +'<hr/>' + data.music[i].who[j].namef + '</div>';
 		}
 		tempVar+='</div>'
 	}
@@ -149,14 +175,18 @@ function song(n,mode){
 
 
 function backtoFilms(){
-	$('#projectTab').empty();
-	$('#content').find('>div').removeClass('lvl2');
-	$('#content').animate({scrollLeft:0}).scrollTop(0).css({background:'#FFF url(resources/images/bkg/3.jpg) no-repeat fixed center center / cover'});
-	
-	if(isSafari){
+	var filmContainer = $('#content').find('>div').removeClass('lvl2');
+	if(constants.isSafari){
 		var films = $('.ca-menu > li:eq(3)');
 		films.removeClass('active').click();
-	}		
+	}else {
+		$('#content')
+			.scrollTop(0)
+			.css({background:'#FFF url(resources/images/bkg/3.jpg) no-repeat fixed center center / cover'})
+			.animate({scrollLeft:0},700,'linear',function(){ 
+				$('#projectTab').empty(); 
+			});
+	}
 }
 
 
@@ -173,8 +203,13 @@ function helpOST(xx){
 		ostPlayer.find('img').eq(0).prop('src',ostPlayer.find('img').eq(0).prop('src').replace('equalizer.on.gif','equalizer.off.png'));
 		ostPlayer.find('img').eq(1).prop({'src':ostPlayer.find('img').eq(1).prop('src').replace('pause','play'),title:'Play Music'});
 		ostPlayer.find('audio').trigger('pause');
-		if(xx ===undefined)
-			$('.songcontrol').removeClass('songpause').addClass('songplay').prop({'title':'Play this music in background!'}).data({uiTooltipTitle:'Play this music in background!'});
+		if(xx ===undefined){
+			$('.songcontrol')
+				.removeClass('songpause')
+				.addClass('songplay')
+				.prop({'title':'Play this music in background!'})
+				.data({uiTooltipTitle:'Play this music in background!'});
+		}
 	}
 }
 

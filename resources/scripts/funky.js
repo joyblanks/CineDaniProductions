@@ -1,12 +1,16 @@
-//browsers
-var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;// Opera 8.0+ (UA detection to detect Blink/v8-powered Opera)
-var isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
-var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;// At least Safari 3+: "[object HTMLElementConstructor]"
-var isChrome = !!window.chrome && !isOpera;              // Chrome 1+
-var isIE = !!document.all || !!document.documentMode; // At least IE6
-var pagesTitle = ["load", "home", "whoweare", "films", "awardsrecognition", "gallery", "corporatevideos", "contactus"];
+var constants = (function(){
+	//browsers
+	var data = {};
+	data.isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;// Opera 8.0+ (UA detection to detect Blink/v8-powered Opera)
+	data.isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
+	data.isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;// At least Safari 3+: "[object HTMLElementConstructor]"
+	data.isChrome = !!window.chrome && !data.isOpera;              // Chrome 1+
+	data.isIE = !!document.all || !!document.documentMode; // At least IE6
+	data.pagesTitle = ["load", "home", "whoweare", "films", "awardsrecognition", "gallery", "corporatevideos", "contactus"];
+	data.imgArr = ['2.jpg','3.jpg','4.jpg','5.jpg','7.jpg','err.png'];
+	return data;
+})();
 
-var dl = (document.domain=='') ? new Array(0,0,0,0) : new Array(1000,2500,500,1500);//Anime 1,2,3
 
 //loader function 1 for show false for hide
 function loading(m){
@@ -35,179 +39,208 @@ function mobileMenu(m){
 	$('ul.ca-menu').show().animate({left:(m?0:'-100%')});
 }
 
-function doTheMobileMenu(fl){
-	var xfl = fl.pageX < (screen.width/25);
-	if(xfl)
-		mobileMenu(1);
-}
 
 window.onhashchange = function(e) {
   var what = window.location.hash.substring(1);
-  var where = $.inArray(what, pagesTitle);
+  var where = $.inArray(what, constants.pagesTitle);
   where = (where >=1 && where <=7) ? where : 1;
-  	funnyScript(where,false);
+  funnyScript(where,false);
 
 }
 
+function urlfn(mode,what){
+	var baseUrl = window.location.href.split('#')[0];
+	var subTitle = (constants.pagesTitle[what]?'#'+constants.pagesTitle[what]:'')
+	var title = 'Cine Dani Productions: '+$('ul.ca-menu li').eq(what).find('.ca-main').text();
+	if(history.pushState)
+		history.pushState({},title,subTitle);
+	$('title').text(title);
+	ga('send', 'pageview', {'title': title});
+}
+
+
 $(document).ready(function(){
 	var websiteloaded = cookieMe('websiteloaded');
+	var quickAnime = false;
 	if(websiteloaded.getCookie()){
-		dl = new Array(100,200,10,50);
+		quickAnime = true;
 	}else{
 		$.ajax({url: './resources/server/counter.php?mode=add',type: 'POST'});
-		
 	}
 	if(!Modernizr.csstransitions){
 		var fckShitHTM = '<div class=fckShit><b><center>&gt;&gt;It seems you are viewing this website in a very ancient browser. '
 			+'We recommend that you download and use a modern Browser.</center></b><br/>'
 			+'<iframe src="http://browsehappy.com/" width="100%" height="95%" frameBorder=0 allowtransparency="true"></iframe></div>';
 		$('body').css({'background':'#FFF'}).empty().html(fckShitHTM);
-
-
 	}else{
 		if(!Modernizr.csspointerevents){
 			$('#tv').css({'z-index':1});
 		}
-		if(isFirefox){
+		if(constants.isFirefox){
 			idontknowman = Math.random();
 			$('#idontknowman').prop({src:('resources/images/ctd.gif?r='+idontknowman)});
 		}
 		$('#preloader').find('img').waitForImages(function(){
 			if(++counter == $('#preloader').find('img').length){
 				$('#preloader').hide();
-				setTimeout(startAnime,1000);
+				setTimeout(function(){animationAction.init(quickAnime);},1000);
 			}
 		});
 	}
-	/*
-	if($('ul.ca-menu li').css('display')=='list-item')
-		$(document).click(doTheMobileMenu).mousemove(doTheMobileMenu);
-	*/
 });
-
-
-
-function golaRez(){
-	var wRol = $('.fckingRoller');
-	var wd = wRol.width()>=wRol.height();
-	$('#rollerli').css({width:(wd?'':wRol.width()-10),height:(wd?wRol.height()-10:'')});
-}
-
-$.fn.animateBG = function(x,y,speed,e,comp) {
-    var pos = this.css('background-position').split(' ');
-    this.x = pos[0].split('px')[0] || 0;
-	this.y = pos[1].split('px')[0] || 0;
-    $.Animation(
-    	this, {x: x, y: y }, {duration:speed, easing:e, complete:comp}
-    	).progress(function(e) {this.css('background-position', '0px '+e.tweens[1].now+'px');
-    });
-    return this;
-}
-var preloading = false;
-function jaldiKaroPreload(imA){
-	//preload all other img
-	preloading = true;
-	var imgL = imA.length;
-	var imgTxt = ''
-	while(imgL--){
-		imgTxt += '<img src="resources/images/bkg/'+imA[imgL]+'" width=1 height=1 />';
-	}
-	$('#preloader').empty().append(imgTxt).show().find('img').waitForImages(function(){
-		if(++counter == $('#preloader').find('img').length){
-			$('#preloader').hide();
-			preloading = false;
-		}
-	});
-}
-
-//Animation - 1 : BKG backdrop
-function startAnime(){
-	jaldiKaroPreload(imgArr);
-	$('#loading').hide();
-	$('.preloader').remove();
-	$('body').css({'background':'#FFF url(resources/images/bkg2.jpg) repeat-x'
-					,'background-size':('106px '+$(window).height()+'px')
-					,'background-position':'0px '+($(window).height()*-1)+'px'
-				});
-	if(isFirefox || isIE){
-		$('body').animateBG(0,0,dl[0],'easeOutCirc',function(){$('body').css({'background-position-y':0});roller1();});
-	}else{
-		$('body').animate({
-				backgroundPositionY:('+='+$(window).height())}
-				,{duration:dl[0]+500,easing:'easeOutCirc'
-				,complete:function(){$(this).css({'background-position-y':0});roller1();}
-			});
-	}
-}
-//Animation - 2 | Movie counter > Menu Shift > Menu Build
-function roller1(){
-	var r = $('<div class=roller/>');
-
-	r.appendTo('body').css({left:$(window).width()/2-125,top:$(window).height()/2-75});
-	r.append('<img src="resources/images/ctd.gif'+(isFirefox?'?r='+idontknowman:'')+'" class="ctd" id="ctd" />');
-	$('#ctd').delay(dl[1]-200).fadeOut(100);
-	r.delay(dl[1]).animate(
-		 {top:0,left:10,height:'150',width:'200'}
-		,{duration:dl[2]
-			,easing:'easeOutCirc'
-			,complete:function(){
-				$(this).fadeOut(50);
-				$('footer').slideDown();
-				$('#roller2').css({top:0,height:100,width:250}).fadeIn(130) //**1
-					.animate({height:'11.5%',width:($(window).width())},{duration:dl[3],easing:'easeOutCirc',complete:function(){finishFunky();}});
-			}
-		}
-	);
-}
-//Animation - 3 | Adjust Roller to screen > main screen in > Stop all anime
-function finishFunky(){
-	$('#roller2').css({'transition': 'all 400ms linear',width:'99.9%',right:0});
-	$('#hello').hide();
-	$('.ca-menu').fadeIn();
-	var isMobile = $('li').css('display')=='list-item';
-	var hgt = isMobile ? ($(window).height()*6.6/7+'px') : ($(window).height()*7.3/9+'px');
-	var tv = $('#tv');
-	tv.css({'width':$(window).width()-20,height:hgt,'background-size':$(window).width()-20+'px '+hgt}).fadeIn();
-	$('#content').fadeIn();
-	setTimeout(golaRez,600);
-	$('.roller').remove();
-	$('#preloader').hide();
-	if(isMobile){
-		$('#menumobile').show();
-	}
-	myCustomReady();
-}
-
-
 
 $(window).resize(function(){
 	var mDevice = $('ul.ca-menu li').css('display')=='list-item';
+	if(mDevice){
+			$('#menumobile').show();
+		}else $('#menumobile').hide();
 	if($('#roller2').is(':visible')){
 		$('#roller2').css({width:($(window).width())});
 		var tv = $('#tv');
 		var hgt = mDevice ? ($(window).height()*6.6/7+'px') : ($(window).height()*7.3/9+'px');
 		tv.css({'width':$(window).width()-20,height:hgt,'background-size':$(window).width()-20+'px '+hgt});
 		//$('#content').css({'width':$(window).width()-30,height:$(window).height()*5.5/8-25+'px'})
-		setTimeout(golaRez,600);
+		setTimeout(function(){
+			var wRol = $('.fckingRoller');
+			var wd = wRol.width()>=wRol.height();
+			$('#rollerli').css({width:(wd?'':wRol.width()-10),height:(wd?wRol.height()-10:'')});
+			if($('.lvl2').is(':visible') && !constants.isSafari){
+				$('#content').animate({scrollLeft:($('#content>div').width()/2+10)},0);
+			}
+		},600);
 	}
-	if($('.lvl2').is(':visible')){
-		$('#content').animate({scrollLeft:($('#content>div').width()/2+10)},0);
-	}
+	
 	$('body').css({'background-size':('106px '+$(window).height()+'px'),'background-position-y':0});
 });
 
-//Hover on anything ** Currently disabled
-function cine(t,n){
-	// onmouseover="cine(1,event)" onmousemove="cine(1,event)" onmouseout="cine(0,event)"
-	if(t==1){
-			n = n ? n : window.event;
-			$('#cineDani').css({top:(n.clientY +10) +'px',left:(n.clientX +10) +'px'}).fadeIn();
 
-	}else if(t==2){
-		n = n ? n : window.event;
-		$('#cineDani').css({top:(n.clientY +10) +'px',left:(n.clientX +10) +'px'});
-	}else $('#cineDani').hide();
-}
+/*************** The Animation Object ***************/
+var animationAction = (function(){
+	var preloading = false;
+	var isMobile = $('li').css('display')=='list-item';
+	var dl = (document.domain=='') ? [0,0,0,0] : [1500,2500,500,1500];//Anime 1,2,3
+	var bodyEl = $('body');
+
+	var jaldiKaroPreload = function(imA){
+		//preload all other img
+		preloading = true;
+		var imgL = imA.length;
+		var imgTxt = ''
+		while(imgL--){
+			imgTxt += '<img src="resources/images/bkg/'+imA[imgL]+'" width=1 height=1 />';
+		}
+		$('#preloader').empty().append(imgTxt).show().find('img').waitForImages(function(){
+			if(++counter == $('#preloader').find('img').length){
+				$('#preloader').hide();
+				preloading = false;
+			}
+		});
+	};
+	
+	$.fn.animateBG = function(x,y,speed,e,comp) {
+	    var pos = this.css('background-position').split(' ');
+	    this.x = pos[0].split('px')[0] || 0;
+		this.y = pos[1].split('px')[0] || 0;
+	    $.Animation(
+	    	this, {x: x, y: y }, {duration:speed, easing:e, complete:comp}
+	    	).progress(function(e) {this.css('background-position', '0px '+e.tweens[1].now+'px');
+	    });
+	    return this;
+	};
+	//Animation - 1 : BKG backdrop
+	var startAnime = function (quickAnime){
+		dl = quickAnime ? [0,0,0,0] : dl;
+		jaldiKaroPreload(constants.imgArr);
+		$('#loading').hide();
+		$('.preloader').remove();
+		bodyEl.css({'background':'#FFF url(resources/images/bkg2.jpg) repeat-x'
+						,'background-size':('106px '+$(window).height()+'px')
+						,'background-position':'0px '+($(window).height()*-1)+'px'
+					});
+		if(constants.isFirefox || constants.isIE){
+			bodyEl.animateBG(0,0,dl[0],'easeOutCirc',function(){
+				bodyEl.css({'background-position-y':0});
+				roller1();
+			});
+		}else{
+			bodyEl.animate({
+				backgroundPositionY:('+='+$(window).height())}
+				,{duration:dl[0],easing:'easeOutCirc'
+				,complete:function(){
+					$(this).css({'background-position-y':0});
+					roller1();
+				}
+			});
+		}
+	};
+	//Animation - 2 | Movie counter > Menu Shift > Menu Build
+	var roller1 = function(){
+		var r = $('<div class=roller/>');
+		r.appendTo('body').css({left:$(window).width()/2-125,top:$(window).height()/2-75});
+		r.append('<img src="resources/images/ctd.gif'+(constants.isFirefox?'?r='+idontknowman:'')+'" class="ctd" id="ctd" />');
+		$('#ctd').delay(dl[1]).fadeOut(100);
+		r.delay(dl[1]).animate(
+			 {top:0,left:10,height:'150',width:'200'}
+			,{duration:dl[2]
+				,easing:'easeOutCirc'
+				,complete:function(){
+					$(this).fadeOut(50);
+					$('footer').slideDown();
+					$('#roller2').css({top:0,height:100,width:250}).fadeIn(130) //**1
+						.animate(
+							{
+								height:'11.5%'
+								,width:($(window).width())
+							}
+							,{
+								duration:dl[3]
+								,easing:'easeOutCirc'
+								,complete:function(){finishFunky();}
+							});
+				}
+			}
+		);
+	};
+	//Animation - 3 | Adjust Roller to screen > main screen in > Stop all anime
+	var finishFunky = function (){
+		$('#roller2').css({'transition': 'all 400ms linear',width:'99.9%',right:0});
+		$('#hello').hide();
+		$('.ca-menu').fadeIn();
+		
+		var hgt = isMobile ? ($(window).height()*6.6/7+'px') : ($(window).height()*7.3/9+'px');
+		var tv = $('#tv');
+		tv.css({'width':$(window).width()-20,height:hgt,'background-size':$(window).width()-20+'px '+hgt}).fadeIn();
+		$('#content').fadeIn();
+		setTimeout(function(){
+			var wRol = $('.fckingRoller');
+			var wd = wRol.width()>=wRol.height();
+			$('#rollerli').css({width:(wd?'':wRol.width()-10),height:(wd?wRol.height()-10:'')});
+		},600);
+		$('.roller').remove();
+		$('#preloader').hide();
+		if(isMobile){
+			$('#menumobile').show();
+		}else $('#menumobile').hide();
+		myCustomReady();
+	};
+
+	//Hover on anything ** Currently disabled
+	var cine = function(t,n){
+		// onmouseover="cine(1,event)" onmousemove="cine(1,event)" onmouseout="cine(0,event)"
+		if(t==1){
+				n = n ? n : window.event;
+				$('#cineDani').css({top:(n.clientY +10) +'px',left:(n.clientX +10) +'px'}).fadeIn();
+
+		}else if(t==2){
+			n = n ? n : window.event;
+			$('#cineDani').css({top:(n.clientY +10) +'px',left:(n.clientX +10) +'px'});
+		}else $('#cineDani').hide();
+	};
+
+	return {init:startAnime};
+})();
+
+
 
 /*********************************Finished Animations Core fn Start*******************************/
 
@@ -219,7 +252,7 @@ function myCustomReady(){
 		websiteloaded.setCookie('1',15);
 	}
 	var baseUrl = (window.location.href.split('#')[1]);
-	var unit = $.inArray(baseUrl, pagesTitle);
+	var unit = $.inArray(baseUrl, constants.pagesTitle);
 	funnyScript(unit>0 && unit<=7 ? unit : 1);
 }
 
@@ -275,7 +308,7 @@ function pageGallery() {
 		
 	};
 	return { init : init };
-}
+};
 
 /*cookie util@joy*/
 function cookieMe(name){
@@ -321,85 +354,54 @@ $.fn.randomize=function(a){
 	return this;
 };
 
-// internal AJAX Call to bring resources
-function funnyScript(what,which){
-	var sts = 0;
-	$.ajax({
-		url: './resources/stuff/'+what+'.html'+'?e='+Math.random()
-		,type: 'GET'
-		,dataType: 'html'
-		,success: function (data) {
-			$('#content').html(data).scrollTop(0).scrollLeft(0);
-			sts = 1;
-			var bkWt = '#FFF '+ ((imgArr.indexOf(what+'.jpg')>-1) 
-						? 'url(resources/images/bkg/'+what+'.jpg) no-repeat fixed center center / cover' 
-						: '');
-			$('#content').css({'background':bkWt});
-		}
-		,error: function (xhr, status) {
-			sts=0;
-			var scrwdUp = '';
-			console.log(status);
-			scrwdUp  += '<div class="err fnt1">Coming soon!</div>';
-			$('#content').html(scrwdUp).css({'background':'#3f4c6b url(resources/images/bkg/err.png) no-repeat fixed right bottom/35% 40%'});
-		}
-	}).always(function(){
-		loading();
-		if(which!==false){
-			urlfn(true,what)
-		}
-		which = which ? which : $('.ca-menu > li').get(what*1);
-		$('title').text('Cine Dani Productions: '+$(which).find('.ca-main').text());
-		screwDLinks(which,sts,(what>100));
-		if(sts && (what==7)){
-			$('div.myfrm :input').fancyInput(); //input form fancy
-			//google maps
-			if(!$('#googlemapsapi').length){
-				loadScript();
-			}else{
-				initializeMaps();
-			}
-		}
-		if(sts){
-			if(what==5){
-				pageGallery().init();
-			}else if(what==1){
-				homeSlide();
-			}else if(what==4){
-				var mDevice = $('ul.ca-menu li').css('display')=='list-item';
-				var theWallOfFame = $('.awardwall');
-				
-				theWallOfFame.randomize('.award');				
-				if(!mDevice){
-					theWallOfFame.find(".award").each(function(i, el) {
-						var that = $(el);
-						that.height(Math.max(100 , Math.floor(Math.random() * 250)));
-						that.width(Math.max(150 , Math.floor(Math.random() * 350)));
-					});
-					theWallOfFame.masonry({itemSelector: '.award',columnWidth: 5,gutterWidth: 22});
-				}else{
-					theWallOfFame.find('.award').css({'margin':'5%'});
-				}
-				theWallOfFame.tooltip({position: {at: "left+50"}});
-			}
-		}
-		
-	});
+//init the masonry plugin for awards
+function handleAwardWall(){
+	var mDevice = $('ul.ca-menu li').css('display')=='list-item';
+	var theWallOfFame = $('.awardwall');
+	
+	theWallOfFame.randomize('.award');				
+	if(!mDevice){
+		theWallOfFame.find(".award").each(function(i, el) {
+			var that = $(el);
+			that.height(Math.max(100 , Math.floor(Math.random() * 250)));
+			that.width(Math.max(150 , Math.floor(Math.random() * 350)));
+		});
+		theWallOfFame.masonry({itemSelector: '.award',columnWidth: 5,gutterWidth: 22});
+	}else{
+		theWallOfFame.find('.award').css({'margin':'5%'});
+	}
+	theWallOfFame.tooltip({position: {at: "left+50"}});
 }
 
+
+
+//Maps in contact us page
 function initializeMaps() {
-	var map_canvas 	= document.getElementById('map-canvas')
-	var myLatlng 	= new google.maps.LatLng(19.1380308,72.8079864);
-	var map 		= new google.maps.Map(map_canvas, {center: myLatlng, zoom: 16, mapTypeId: google.maps.MapTypeId.ROADMAP});
-	var marker 		= new google.maps.Marker({position: myLatlng, map: map, title: 'Cine Dani Productions'});
+	if(!$('#googlemapsapi').length){
+		var script 	= document.createElement('script');
+		script.type = 'text/javascript';
+		script.src 	= 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +'callback=initializeMaps';
+		script.id 	= 'googlemapsapi';
+		document.body.appendChild(script);
+	}else{
+		var map_canvas 	= document.getElementById('map-canvas')
+		var myLatlng 	= new google.maps.LatLng(19.1380308,72.8079864);
+		var map 		= new google.maps.Map(map_canvas, {center: myLatlng, zoom: 16, mapTypeId: google.maps.MapTypeId.ROADMAP});
+		var marker 		= new google.maps.Marker({position: myLatlng, map: map, title: 'Cine Dani Productions'});
+	}
 }
 
-function loadScript() {
-	var script 	= document.createElement('script');
-	script.type = 'text/javascript';
-	script.src 	= 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +'callback=initializeMaps';
-	script.id 	= 'googlemapsapi';
-	document.body.appendChild(script);
+//Send email query in contact us page
+function mailQuery(form){
+	//id = 903246913039326;
+	$.post( 
+		"./resources/server/query.php"
+		, $( form ).serialize() 
+		, function(d){
+			d = $.parseJSON(d);
+			$('#queryform').html('<div class="transBkg" style="height:300px;padding:50px;color:#fff;">'+d.message+'</div>');
+		}
+	);
 }
 
 
@@ -414,10 +416,6 @@ function screwDLinks(xx,fcked,whr){
 	}
 }
 
-function loadOtherLinks(){
-
-}
-
 //Call from the Tab
 function doMyBoom(what,which,something){
 	if($(which).hasClass('active')){
@@ -425,12 +423,60 @@ function doMyBoom(what,which,something){
 	}
 	if($('ul.ca-menu li').css('display')=='list-item'){
 		$('ul.ca-menu').animate({left:'-100%'});
+		$('#menumobile').delay(400).fadeIn();
 	}
 	loading(1);
 
 	funnyScript(what,which);
 }
 
+// internal AJAX Call to bring resources
+function funnyScript(what,which){
+	var sts = 0;
+	$.ajax({
+		url: './resources/stuff/'+what+'.html'+'?e='+Math.random()
+		,type: 'GET'
+		,dataType: 'html'
+		,success: function (data) {
+			$('#content').html(data).scrollTop(0).scrollLeft(0);
+			sts = 1;
+			var bkWt = '#FFF '+ ((constants.imgArr.indexOf(what+'.jpg')>-1) 
+						? 'url(resources/images/bkg/'+what+'.jpg) no-repeat fixed center center / cover' 
+						: '');
+			$('#content').css({'background':bkWt});
+		}
+		,error: function (xhr, status) {
+			sts=0;
+			var scrwdUp = '';
+			console.log(status);
+			scrwdUp  += '<div class="err">Coming soon!</div>';
+			$('#content').html(scrwdUp).css({'background':'#3f4c6b url(resources/images/bkg/err.png) no-repeat fixed right bottom/35% 40%'});
+		}
+	}).always(function(){
+		loading();
+		if(which!==false){
+			urlfn(true,what)
+		}
+		which = which ? which : $('.ca-menu > li').get(what*1);
+		$('title').text('Cine Dani Productions: '+$(which).find('.ca-main').text());
+		screwDLinks(which,sts,(what>100));
+		
+		if(sts){
+			if(what==5){
+				pageGallery().init();
+			}else if(what==1){
+				homeSlide(); //home.js
+			}else if(what==4){
+				handleAwardWall();//Awards
+			}else if(what==7){
+				$('div.myfrm :input').fancyInput(); //input form fancy
+				initializeMaps();//google maps
+			}
+		}
+	});
+}
+
+//call for Projects in Films tab
 function callItLnk(id,nde){
 	loading(1);
 	var sts = 0;
@@ -446,27 +492,4 @@ function callItLnk(id,nde){
 	});
 }
 
-function mailQuery(form){
-	//id = 903246913039326;
-	$.post( 
-		"./resources/server/query.php"
-		, $( form ).serialize() 
-		, function(d){
-			d = $.parseJSON(d);
-			$('#queryform').html('<div class="transBkg" style="height:300px;padding:50px;color:#fff;">'+d.message+'</div>');
-		}
-	);
-}
 
-function urlfn(mode,what){
-	var baseUrl = window.location.href.split('#')[0];
-	var subTitle = (pagesTitle[what]?'#'+pagesTitle[what]:'')
-	var title = 'Cine Dani Productions: '+$('ul.ca-menu li').eq(what).find('.ca-main').text();
-	if(history.pushState)
-		history.pushState({},title,subTitle);
-	$('title').text(title);
-	ga('send', 'pageview', {'title': title});
-}
-
-
-var imgArr = new Array('2.jpg','3.jpg','4.jpg','5.jpg','7.jpg','err.png');
