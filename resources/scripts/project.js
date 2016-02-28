@@ -1,6 +1,6 @@
 function scaryProject(data,id){
 	//var bkWt = '#FFF url(resources/images/bkg/3.jpg) no-repeat fixed center/cover';//Project image hardcoded
-	var backbutton = "<span  class=backbutton onclick=\"backtoFilms()\">&nbsp;</span>";
+	//var backbutton = "<span  class=backbutton onclick=\"backtoFilms()\">&nbsp;</span>";
 	//debugger;
 	$('#content')
 		.css({'background':
@@ -24,12 +24,14 @@ function scaryProject(data,id){
 	var otherlk = (data.imdb ? '<a href="'+data.imdb+'" target=_blank>'
 									+'<span style="background:url(resources/images/imdb.png)'
 									+' no-repeat center / contain;padding-left:50px;margin-left:5px;"></span></a>' : '');
-	var toWrite = backbutton
+	var toWrite = ''
 					+ '<div class="transBkg smalltitle">'
 					+ '<div class=smallproject style="color:#FFF;">'
 					+myOst+'<img src="resources/stuff/projects/'+id+'/'+data.icon+'" style="box-shadow:0px 0px 3px #FFF;"/><p>'
-					+data.project+otherlk+'</p><span class=desc>' + data.synopsis + '</span>'
-					+'<a href="javascript:void(0);" onclick="loadMoreDetails(this);">Show&nbsp;More...</a></div></div>';
+					+data.project+otherlk+'</p><span class=desc>' + data.synopsis + '</span><br/><br/><br/>'
+					+'<a href="javascript:void(0);" onclick="backtoFilms();">Go Back</a>&nbsp;&nbsp;'
+					+'|&nbsp;&nbsp;<a href="javascript:void(0);" onclick="loadMoreDetails(this);">Show&nbsp;Movie&nbsp;Details</a>'
+					+'</div></div>';
 	var tempVar, img, httpProt = window.location.protocol == 'https:' ? 'https:' : 'http:';
 	
 	
@@ -231,9 +233,9 @@ function toggleDiv(n){
 }
 
 function loadMoreDetails(nde){
-	$('.backbutton').fadeIn();
+	//$('.backbutton').fadeIn();
 	$('.smalldetails').slideDown('slow');
 	$('.smalltitle').animate({'margin-top':'0%','padding-top':'1%','padding-bottom':'1%'},'slow');
 	$('#content').animate({scrollTop:($('.smalltitle').height()+50)},1000).css({scrollLeft:($('#content>div').width()/2+10)});
-	$(nde).hide();
+	//$(nde).hide();
 }

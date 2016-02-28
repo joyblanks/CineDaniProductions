@@ -24,6 +24,7 @@
 		<link rel=stylesheet href="resources/styles/gallerybox.css" />
 	</head>
 	<body>
+		<div id="fb-root"></div>
 		<header>
 			<img class=preloader src="resources/images/rotator.png"  width=70 height=70 />
 			<img id="loader" src="resources/images/rotator.png"  width=70 height=70 />
@@ -128,6 +129,15 @@
 			ga('create', 'UA-65882234-1', 'auto');
 			ga('send', 'pageview');
 
+		</script>
+		<script>
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
 		</script>
 	</body>
 </html>
