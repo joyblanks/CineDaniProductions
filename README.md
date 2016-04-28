@@ -7,6 +7,6 @@ Designed by Joy Biswas | joy.blanks@hotmail.com
 ####Snapshots
 <img src="resources/images/readme/aboutus.jpg" />
 <img src="resources/images/readme/awards.jpg" />
-<img src="resources/images/readme/films.st.jpg" />
+<img src="resources/images/readme/film.st.jpg" />
 
 
