@@ -5,6 +5,8 @@
 Designed by Joy Biswas | joy.blanks@hotmail.com
 
 ####Snapshots
-<img src="resources/images/snapshot.png" />
-<img src="resources/images/awards.png" />
+<img src="resources/images/readme/aboutus.jpg" />
+<img src="resources/images/readme/awards.jpg" />
+<img src="resources/images/readme/films.st.jpg" />
+
 
