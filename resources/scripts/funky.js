@@ -463,7 +463,12 @@ function funnyScript(what,which){
 		
 		if(sts){
 			if(what==5){
-				pageGallery().init();
+				//pageGallery().init();
+				// Initialize Galleria
+				$.getJSON('./resources/server/galleryJSONv2.php',function(data){
+					xxx = Galleria.run('#icongallery', {dataSource: data.gallery,trueFullscreen:true,imageCrop:'landscape', overlayOpacity: 0.5,transition:'fade'});
+				});
+    			
 			}else if(what==1){
 				homeSlide(); //home.js
 			}else if(what==4){

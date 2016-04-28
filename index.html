@@ -21,7 +21,7 @@
 		<link rel=stylesheet href="resources/styles/main.css" />
 		<link rel=stylesheet href="resources/styles/menu.css" />
 		<link rel=stylesheet href="resources/styles/fnky.css" />
-		<link rel=stylesheet href="resources/styles/gallerybox.css" />
+		<!--<link rel=stylesheet href="resources/styles/gallerybox.css" />-->
 	</head>
 	<body>
 		<div id="fb-root"></div>
@@ -118,7 +118,7 @@
 		<script src="resources/scripts/project.js"></script>
 		<script src="resources/scripts/fncy.js"></script>
 		<script src="resources/scripts/home.js"></script>
-		<script src="resources/scripts/jquery.slicebox.js"></script>
+		<script src="resources/scripts/galleria/galleria-1.4.2.min.js"></script>
 		<script src="resources/scripts/masonry.pkgd.min.js"></script>
 		<script>
 			//Google Analytics Prev ID: UA-65882234-1
@@ -138,7 +138,8 @@
 				js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
-
+			// Load the classic theme
+			Galleria.loadTheme('resources/scripts/galleria/themes/classic/galleria.classic.min.js');
 		</script>
 	</body>
 </html>
