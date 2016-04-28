@@ -4,5 +4,7 @@
 
 Designed by Joy Biswas | joy.blanks@hotmail.com
 
-####Snapshot
+####Snapshots
 <img src="resources/images/snapshot.png" />
+<img src="resources/images/awards.png" />
+
