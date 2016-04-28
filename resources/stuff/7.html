@@ -5,7 +5,7 @@
 		<div class=myfrm><input name=fname required type=text placeholder="First Name" /></div>
 		<div class=myfrm><input name=lname required type=text placeholder="Last Name" /></div>
 		<br/>
-		<div class=myfrm><input name=email required type=email placeholder="email address" /></div>
+		<div class=myfrm><input name=email required type=text pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" title="Not a valid email-ID" placeholder="email address" /></div>
 		<div class=myfrm><input name=tel required type=phone placeholder="Phone Number" /></div>
 		<br/>
 		<div class="myfrm big"><input name=subject required type=text placeholder="Subject:" /></div>
@@ -19,8 +19,6 @@
 
 
 	<div style="float:left;padding-left:10px;min-width:45%;color:#000;">
-		
-		
 		<div class=contactsocial>
 			<h2 style="font-size:22px;font-weight:bold;"> Vikas Dani</h2>
 			<a href="https://www.facebook.com/cinedani/" target="_blank" style="background-image:url(resources/images/social/facebook.png);" title="Facebook"></a>

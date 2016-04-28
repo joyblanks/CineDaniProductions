@@ -1,8 +1,18 @@
 <?php
 	$remoteImage = handleRead($_GET['id']);
 	$imginfo = getimagesize($remoteImage);
+	
+	header("HTTP/1.1 200 OK");
+	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+	header("Cache-Control: no-store, no-cache, must-revalidate");
+	header("Cache-Control: post-check=0, pre-check=0", false);
+	header("Pragma: no-cache");
 	header("Content-type: ".$imginfo['mime']);
+	
+
 	echo file_get_contents($remoteImage);
+	//echo ($remoteImage);
 
 	//readfile($remoteImage);
 
@@ -33,9 +43,9 @@
 		preg_match_all('/src="([^"]+)"/', $questArr, $images);
 		$img = '';
 		foreach ($images[0] as $tag) {
-			if (strpos($tag, 'p480x480') !==false) {
+			if (strpos($tag, 'p50x50') !==false) {
 				$img =  substr ( $tag , 5 , -1 );
-				//echo $img;
+				//echo $img ."<br/>";
 				break;
 			}
 		}

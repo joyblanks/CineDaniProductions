@@ -18,7 +18,7 @@ function homeSlide(){
 			$('#slideout').css({'background-image':bkgs.join(',')});
 		}
 	});
-
+	FB.XFBML.parse();
 	
 }
 var homeSLideInt;
